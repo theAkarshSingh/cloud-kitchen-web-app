@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "cd Backend && npm run dev"
+  },
+  "dependencies": {
+    "mongoose": "^9.9.0"
+  }
+}
