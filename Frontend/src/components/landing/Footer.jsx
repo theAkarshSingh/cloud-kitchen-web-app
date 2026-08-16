@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="text-2xl font-bold text-orange-400">
-              CloudKitchen
+              MealsNest
             </Link>
             <p className="text-gray-500 text-sm mt-3 leading-relaxed">
               Restaurant-quality food from the best cloud kitchens, delivered
@@ -82,7 +82,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
-          <p>© {year} CloudKitchen. All rights reserved.</p>
+          <p>© {year} MealsNest. All rights reserved.</p>
           <p>Made with ❤️ for food lovers everywhere.</p>
         </div>
       </div>

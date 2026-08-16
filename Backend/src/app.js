@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get("/", (req, res) => {
-  res.json({ message: "Cloud Kitchen API is running" });
+  res.json({ message: "Meals Nest API is running" });
 });
 
 // Swagger API Docs
@@ -36,7 +36,7 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerSpec, {
     customCss: ".swagger-ui .topbar { display: none }",
-    customSiteTitle: "Cloud Kitchen API Docs",
+    customSiteTitle: "Meals Nest API Docs",
   }),
 );
 

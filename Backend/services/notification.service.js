@@ -12,7 +12,7 @@ const sendOrderConfirmation = async (userEmail, order) => {
     <p>Payment Method: <strong>${order.paymentMethod.toUpperCase()}</strong></p>
     <p>Status: <strong>${order.orderStatus}</strong></p>
     <br/>
-    <p>Thank you for ordering with Cloud Kitchen!</p>
+    <p>Thank you for ordering with Meals Nest!</p>
   `;
 
   return sendEmail(userEmail, subject, html);
@@ -30,7 +30,7 @@ const sendOrderStatusUpdate = async (userEmail, order) => {
     ${order.orderStatus === "delivered" ? "<p>🎉 Your food has been delivered. Enjoy!</p>" : ""}
     ${order.orderStatus === "cancelled" ? `<p>Reason: ${order.cancelReason || "N/A"}</p>` : ""}
     <br/>
-    <p>Cloud Kitchen</p>
+    <p>Meals Nest</p>
   `;
 
   return sendEmail(userEmail, subject, html);

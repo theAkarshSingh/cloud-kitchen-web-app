@@ -63,7 +63,7 @@ const FAQSection = () => {
             Got Questions?
           </h2>
           <p className="text-gray-400 mt-4">
-            Everything you need to know about CloudKitchen.
+            Everything you need to know about MealsNest.
           </p>
         </div>
 

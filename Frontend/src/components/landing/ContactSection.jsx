@@ -39,7 +39,7 @@ const ContactSection = () => {
               <div className="text-3xl">📧</div>
               <div>
                 <h4 className="font-semibold mb-1">Email Us</h4>
-                <p className="text-gray-400 text-sm">hello@cloudkitchen.in</p>
+                <p className="text-gray-400 text-sm">hello@mealsnest.in</p>
                 <p className="text-gray-500 text-xs mt-1">
                   We reply within 24 hours on business days.
                 </p>

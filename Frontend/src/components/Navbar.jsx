@@ -22,7 +22,7 @@ const Navbar = () => {
           className={`text-2xl font-bold ${darkMode ? "text-orange-400" : "text-orange-500"
             }`}
         >
-          CloudKitchen
+          MealsNest
         </Link>
 
         <div className="flex items-center gap-4">

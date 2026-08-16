@@ -25,7 +25,7 @@ const ReferFriend = () => {
               Refer a Friend, Eat for Free
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto mb-8 text-sm md:text-base">
-              Invite a friend to CloudKitchen. When they place their first order,
+              Invite a friend to MealsNest. When they place their first order,
               you both get <span className="text-orange-400 font-semibold">₹100 off</span> your next meal.
               No limits — the more you refer, the more you save.
             </p>

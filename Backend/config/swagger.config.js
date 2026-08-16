@@ -4,10 +4,10 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Cloud Kitchen API",
+      title: "Meals Nest API",
       version: "1.0.0",
       description:
-        "REST API documentation for Cloud Kitchen food ordering platform",
+        "REST API documentation for Meals Nest food ordering platform",
       contact: {
         name: "Vikas Kumar",
       },
