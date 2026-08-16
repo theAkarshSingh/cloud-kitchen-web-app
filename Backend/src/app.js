@@ -12,6 +12,12 @@ import orderRoute from "../routes/order.route.js";
 
 const app = express();
 
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://mealsnest.vercel.app',
+  credentials: true
+}));
+
 // Security middleware
 app.use(helmet());
 
