@@ -12,17 +12,15 @@ import orderRoute from "../routes/order.route.js";
 
 const app = express();
 
-const cors = require('cors');
-app.use(cors({
-  origin: 'https://mealsnest.vercel.app',
-  credentials: true
-}));
-
 // Security middleware
 app.use(helmet());
 
-// CORS
-app.use(cors({ origin: process.env.CLIENT_URL || "*", credentials: true }));
+// CORS - One clean configuration!
+app.use(cors({
+  // Prioritize your actual Vercel frontend, fallback to env var, fallback to wildcard
+  origin: ['https://mealsnest.vercel.app', process.env.CLIENT_URL].filter(Boolean),
+  credentials: true
+}));
 
 // Logger
 app.use(morgan("dev"));
