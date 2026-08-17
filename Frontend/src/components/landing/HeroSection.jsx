@@ -1,88 +1,89 @@
 import { Link } from "react-router-dom";
+import { ArrowRight, Star, Clock, MapPin, ShieldCheck } from "lucide-react";
 
 const badges = [
-  { icon: "⭐", text: "4.8 / 5 Rating" },
-  { icon: "⚡", text: "30-min Delivery" },
-  { icon: "🏪", text: "50+ Kitchens" },
-  { icon: "🔒", text: "Safe & Hygienic" },
+  { icon: <Star size={16} className="text-[#FF5722]" />, text: "4.8 / 5 Rating" },
+  { icon: <Clock size={16} className="text-[#FF5722]" />, text: "30-min Delivery" },
+  { icon: <MapPin size={16} className="text-[#FF5722]" />, text: "50+ Kitchens" },
+  { icon: <ShieldCheck size={16} className="text-[#FF5722]" />, text: "Safe & Hygienic" },
 ];
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-[#080808]" />
+    <section className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-transparent">
+      
+      {/* Decorative Elements */}
+      <div className="absolute top-1/4 right-0 w-64 h-64 bg-[#FF5722] rounded-full blur-[120px] opacity-10 pointer-events-none" />
+      <div className="absolute bottom-1/4 left-10 w-48 h-48 bg-[#E63946] rounded-full blur-[100px] opacity-5 pointer-events-none" />
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/3 w-[700px] h-[700px] bg-orange-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-red-600/6 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 relative z-10">
+        
+        {/* Left Column: Text Content */}
+        <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-5 py-2 mb-6 animate-fade-in">
+            <span className="w-2 h-2 rounded-full bg-[#FF5722] animate-pulse inline-block" />
+            <span className="text-[#FF5722] text-xs font-bold tracking-widest uppercase">
+              Fresh · Local · Delivered
+            </span>
+          </div>
 
-      {/* Grid pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+          <h1 className="landing-heading text-5xl sm:text-6xl lg:text-7xl mb-6 animate-fade-in-up">
+            Savor the Flavor,<br />
+            Delivered to Your <span className="text-[#FF5722]">Nest</span>
+          </h1>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-12">
-        {/* Tag */}
-        <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/25 rounded-full px-5 py-2 mb-8 animate-fade-in">
-          <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse inline-block" />
-          <span className="text-orange-400 text-xs font-bold tracking-widest uppercase">
-            Fresh · Local · Delivered
-          </span>
+          <p className="landing-text text-lg sm:text-xl mb-10 max-w-lg mx-auto lg:mx-0 animate-fade-in-up delay-100">
+            Order from the best cloud kitchens in your city. Chef-crafted meals prepared fresh and delivered to your door in under{" "}
+            <span className="font-semibold text-[#F8F8F8]">30 minutes</span>.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 animate-fade-in-up delay-200">
+            <Link to="/kitchens" className="landing-btn-primary animate-pulse-btn">
+              Order Now
+              <ArrowRight size={18} />
+            </Link>
+            <a href="#how-it-works" className="landing-btn-ghost">
+              How It Works
+            </a>
+          </div>
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap justify-center lg:justify-start gap-3 animate-fade-in-up delay-300">
+            {badges.map((b, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-2 landing-glass px-4 py-2 rounded-full border border-white/10 hover:border-[#FF5722]/30 transition-colors duration-300 bg-[#080808]/60"
+              >
+                {b.icon}
+                <span className="text-sm font-semibold text-[#A0A0A0]">{b.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] tracking-tight mb-8 animate-fade-in-up">
-          Restaurant-Quality
-          <br />
-          <span className="gradient-text">Food at Home</span>
-        </h1>
-
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-100">
-          Order from the best cloud kitchens in your city. Chef-crafted meals prepared fresh and delivered to your door in under{" "}
-          <span className="text-white/70 font-semibold">30 minutes</span>.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up delay-200">
-          <Link to="/kitchens" className="btn-primary !py-4 !px-10 !text-base">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-            Order Now
-          </Link>
-          <a
-            href="#how-it-works"
-            className="btn-ghost !py-4 !px-10 !text-base"
-          >
-            How It Works ↓
-          </a>
-        </div>
-
-        {/* Trust badges */}
-        <div className="flex flex-wrap justify-center gap-3 animate-fade-in-up delay-300">
-          {badges.map((b, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-2 glass px-5 py-2.5 rounded-full hover:border-orange-500/20 transition-colors duration-300"
-            >
-              <span className="text-lg">{b.icon}</span>
-              <span className="text-sm text-white/50 font-medium">{b.text}</span>
+        {/* Right Column: Image */}
+        <div className="flex-1 relative w-full max-w-lg lg:max-w-xl mx-auto animate-fade-in delay-200">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-orange-500/10 border-4 border-[#1A1A1A] animate-landing-float">
+            <img 
+              src="/images/landing/hero.jpg" 
+              alt="Gourmet Meal" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          
+          {/* Floating UI Element */}
+          <div className="absolute -bottom-6 -left-6 landing-glass bg-[#1A1A1A]/90 p-4 rounded-2xl flex items-center gap-4 shadow-xl border border-white/10 animate-landing-float" style={{ animationDelay: '1s' }}>
+            <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+              <span className="text-2xl">🌱</span>
             </div>
-          ))}
+            <div>
+              <p className="text-xs text-[#8E8E8E] font-semibold uppercase">Fresh Ingredients</p>
+              <p className="text-sm font-bold text-[#F8F8F8]">Farm to Table</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
+      </div>
     </section>
   );
 };

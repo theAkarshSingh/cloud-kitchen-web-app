@@ -1,132 +1,144 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Star, Plus, Check, ArrowRight } from "lucide-react";
+
+const categories = ["All", "Healthy", "Comfort", "Vegan", "Desserts"];
 
 const featured = [
   {
-    name: "Butter Chicken",
-    description: "Tender chicken in a rich, creamy tomato-butter gravy. Served with garlic naan.",
-    price: "₹279",
-    tag: "Non-Veg",
-    tagColor: "bg-red-500/10 text-red-400 border-red-500/20",
-    emoji: "🍛",
-    gradient: "from-red-500/10 to-orange-500/5",
+    id: 1,
+    name: "Classic Cheese Pizza",
+    description: "Authentic wood-fired pizza with rich tomato sauce, fresh mozzarella, and basil.",
+    price: "₹299",
+    rating: "4.9",
+    image: "/images/landing/pizza.jpg",
+    category: "Comfort"
   },
   {
-    name: "Paneer Tikka Masala",
-    description: "Smoky grilled paneer cubes in a spiced onion-tomato masala. Pure comfort food.",
-    price: "₹229",
-    tag: "Veg",
-    tagColor: "bg-green-500/10 text-green-400 border-green-500/20",
-    emoji: "🧀",
-    gradient: "from-green-500/10 to-emerald-500/5",
-  },
-  {
-    name: "Margherita Pizza",
-    description: "Classic wood-fired pizza with fresh mozzarella, tomato sauce, and basil.",
+    id: 2,
+    name: "Mediterranean Salad",
+    description: "Crisp greens, cherry tomatoes, olives, feta cheese, and olive oil drizzle.",
     price: "₹249",
-    tag: "Veg",
-    tagColor: "bg-green-500/10 text-green-400 border-green-500/20",
-    emoji: "🍕",
-    gradient: "from-yellow-500/10 to-amber-500/5",
+    rating: "4.9",
+    image: "/images/landing/salad.jpg",
+    category: "Healthy"
   },
   {
-    name: "Grilled Chicken Bowl",
-    description: "Herb-marinated grilled chicken over seasoned rice with roasted vegetables.",
-    price: "₹319",
-    tag: "Non-Veg",
-    tagColor: "bg-red-500/10 text-red-400 border-red-500/20",
-    emoji: "🥗",
-    gradient: "from-orange-500/10 to-red-500/5",
+    id: 3,
+    name: "Truffle Mushroom Pasta",
+    description: "Elegant fettuccine in a creamy truffle mushroom sauce with fresh parmesan.",
+    price: "₹399",
+    rating: "4.7",
+    image: "/images/landing/pasta.jpg",
+    category: "Comfort"
   },
   {
-    name: "Masala Dosa",
-    description: "Crispy golden dosa stuffed with spiced potato filling. Served with sambar & chutney.",
-    price: "₹149",
-    tag: "Veg",
-    tagColor: "bg-green-500/10 text-green-400 border-green-500/20",
-    emoji: "🥞",
-    gradient: "from-amber-500/10 to-yellow-500/5",
-  },
-  {
-    name: "Chocolate Lava Cake",
-    description: "Warm chocolate cake with a gooey molten centre. Served with vanilla ice cream.",
-    price: "₹179",
-    tag: "Dessert",
-    tagColor: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
-    emoji: "🍫",
-    gradient: "from-purple-500/10 to-pink-500/5",
-  },
+    id: 4,
+    name: "Molten Lava Cake",
+    description: "Decadent chocolate lava cake oozing with molten chocolate and vanilla ice cream.",
+    price: "₹199",
+    rating: "4.9",
+    image: "/images/landing/dessert.jpg",
+    category: "Desserts"
+  }
 ];
 
 const MenuPreview = () => {
-  return (
-    <section id="menu" className="py-28 relative overflow-hidden">
-      <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-orange-500/4 rounded-full blur-3xl pointer-events-none" />
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [addedItems, setAddedItems] = useState({});
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+  const handleAddToCart = (e, id) => {
+    e.preventDefault();
+    setAddedItems({ ...addedItems, [id]: true });
+    setTimeout(() => {
+      setAddedItems((prev) => ({ ...prev, [id]: false }));
+    }, 2000);
+  };
+
+  const filteredDishes = activeCategory === "All" 
+    ? featured 
+    : featured.filter(dish => dish.category === activeCategory || (activeCategory === "Vegan" && dish.category === "Healthy"));
+
+  return (
+    <section id="menu" className="py-24 relative overflow-hidden bg-transparent">
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="section-label mb-4 inline-block">What's Cooking</span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-4 mb-4 tracking-tight">
-            Popular Dishes
-          </h2>
-          <p className="text-white/40 max-w-md mx-auto text-lg">
-            A taste of what's waiting for you across our kitchens.
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div className="max-w-2xl">
+            <span className="text-[#FF5722] text-sm font-bold tracking-widest uppercase mb-3 inline-block">Our Menu</span>
+            <h2 className="landing-heading text-4xl md:text-5xl mb-4 text-[#F8F8F8]">
+              Trending Right Now
+            </h2>
+          </div>
+          
+          {/* Category Slider */}
+          <div className="flex overflow-x-auto pb-4 pt-2 hide-scrollbar gap-3 md:pb-0">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`landing-category-pill ${activeCategory === cat ? 'active' : ''}`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Dishes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featured.map((item) => (
-            <div
-              key={item.name}
-              className={`group relative rounded-3xl bg-gradient-to-br ${item.gradient} border border-white/6 p-6 hover:border-orange-500/20 hover:scale-[1.02] transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 cursor-pointer`}
-            >
-              {/* Emoji */}
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
-                {item.emoji}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {filteredDishes.map((item) => (
+            <div key={item.id} className="landing-dish-card flex flex-col">
+              
+              <div className="landing-dish-img-wrapper">
+                <img src={item.image} alt={item.name} className="landing-dish-img" />
+                <div className="absolute top-4 left-4 bg-[#1A1A1A]/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm border border-white/10">
+                  <Star size={14} className="text-[#FF5722] fill-current" />
+                  <span className="text-sm font-bold text-[#F8F8F8]">{item.rating}</span>
+                </div>
               </div>
 
-              {/* Header row */}
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <h3 className="text-lg font-bold text-white leading-tight">{item.name}</h3>
-                <span className={`badge border text-[10px] shrink-0 ${item.tagColor}`}>
-                  {item.tag}
-                </span>
+              <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-3.5 h-3.5 border border-green-500 flex items-center justify-center shrink-0">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                  </span>
+                  <h3 className="text-xl font-bold text-[#F8F8F8] font-['Outfit'] line-clamp-1">{item.name}</h3>
+                </div>
+                <p className="text-[#A0A0A0] text-sm leading-relaxed mb-6 flex-1 line-clamp-2">
+                  {item.description}
+                </p>
+                
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-xl font-extrabold text-[#F8F8F8]">{item.price}</span>
+                  
+                  <button 
+                    onClick={(e) => handleAddToCart(e, item.id)}
+                    className={`landing-add-btn ${addedItems[item.id] ? 'success' : ''}`}
+                    aria-label="Add to cart"
+                  >
+                    {addedItems[item.id] ? <Check size={20} /> : <Plus size={20} />}
+                  </button>
+                </div>
               </div>
-
-              <p className="text-white/40 text-sm leading-relaxed mb-5">
-                {item.description}
-              </p>
-
-              {/* Price & Order */}
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-extrabold text-orange-400">{item.price}</span>
-                <Link
-                  to="/kitchens"
-                  className="flex items-center gap-1.5 text-sm text-white/40 hover:text-orange-400 transition-colors font-medium border border-white/10 hover:border-orange-500/30 px-4 py-2 rounded-xl"
-                >
-                  Order
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
+              
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Link
             to="/kitchens"
-            className="btn-ghost !px-10 !py-4 !text-base border-orange-500/30 text-orange-400 hover:bg-orange-500/10"
+            className="landing-btn-ghost hover:bg-[#FF5722]/5 hover:border-[#FF5722]/30 hover:text-[#FF5722]"
           >
-            Browse All Kitchens
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            Explore Full Menu
+            <ArrowRight size={18} />
           </Link>
         </div>
+
       </div>
     </section>
   );
