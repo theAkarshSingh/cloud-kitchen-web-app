@@ -4,86 +4,110 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 py-16">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+    <footer className="relative overflow-hidden border-t border-white/5 py-20">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-orange-500/4 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link to="/" className="text-2xl font-bold text-orange-400">
-              MealsNest
+            <Link to="/" className="flex items-center gap-2.5 group mb-5 w-fit">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                <span className="text-white font-bold">M</span>
+              </div>
+              <span className="text-xl font-bold text-white">
+                Meals<span className="text-orange-400">Nest</span>
+              </span>
             </Link>
-            <p className="text-gray-500 text-sm mt-3 leading-relaxed">
-              Restaurant-quality food from the best cloud kitchens, delivered
-              fresh to your door.
+            <p className="text-white/30 text-sm leading-relaxed mb-5">
+              Restaurant-quality food from the best cloud kitchens, delivered fresh to your door.
             </p>
-            <div className="flex gap-3 mt-5">
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:border-orange-400 hover:text-orange-400 transition text-sm"
-              >
-                𝕏
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:border-orange-400 hover:text-orange-400 transition text-sm"
-              >
-                📷
-              </a>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:border-orange-400 hover:text-orange-400 transition text-sm"
-              >
-                in
-              </a>
+            {/* Socials */}
+            <div className="flex gap-2">
+              {[
+                { label: "Twitter", symbol: "𝕏" },
+                { label: "Instagram", symbol: "📷" },
+                { label: "LinkedIn", symbol: "in" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href="#"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-xl border border-white/8 flex items-center justify-center text-white/30 hover:border-orange-500/40 hover:text-orange-400 hover:bg-orange-500/8 transition-all duration-300 text-sm"
+                >
+                  {s.symbol}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick links */}
+          {/* Platform */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-300 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">
               Platform
             </h4>
-            <ul className="space-y-2 text-sm text-gray-500">
-              <li><Link to="/kitchens" className="hover:text-white transition">Browse Kitchens</Link></li>
-              <li><Link to="/my-orders" className="hover:text-white transition">My Orders</Link></li>
-              <li><Link to="/cart" className="hover:text-white transition">Cart</Link></li>
-              <li><Link to="/profile" className="hover:text-white transition">Profile</Link></li>
+            <ul className="space-y-3 text-sm">
+              {[
+                { to: "/kitchens", label: "Browse Kitchens" },
+                { to: "/my-orders", label: "My Orders" },
+                { to: "/cart", label: "Cart" },
+                { to: "/profile", label: "Profile" },
+              ].map(({ to, label }) => (
+                <li key={label}>
+                  <Link to={to} className="text-white/30 hover:text-white transition-colors duration-300">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-300 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">
               Company
             </h4>
-            <ul className="space-y-2 text-sm text-gray-500">
-              <li><a href="#how-it-works" className="hover:text-white transition">How It Works</a></li>
-              <li><a href="#plans" className="hover:text-white transition">Meal Plans</a></li>
-              <li><a href="#faq" className="hover:text-white transition">FAQ</a></li>
-              <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
+            <ul className="space-y-3 text-sm">
+              {[
+                { href: "#how-it-works", label: "How It Works" },
+                { href: "#plans", label: "Meal Plans" },
+                { href: "#faq", label: "FAQ" },
+                { href: "#contact", label: "Contact" },
+              ].map(({ href, label }) => (
+                <li key={label}>
+                  <a href={href} className="text-white/30 hover:text-white transition-colors duration-300">
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-300 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">
               Legal
             </h4>
-            <ul className="space-y-2 text-sm text-gray-500">
-              <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white transition">Cookie Policy</a></li>
-              <li><a href="#" className="hover:text-white transition">Refund Policy</a></li>
+            <ul className="space-y-3 text-sm">
+              {["Privacy Policy", "Terms of Service", "Cookie Policy", "Refund Policy"].map((label) => (
+                <li key={label}>
+                  <a href="#" className="text-white/30 hover:text-white transition-colors duration-300">
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
-          <p>© {year} MealsNest. All rights reserved.</p>
-          <p>Made with ❤️ for food lovers everywhere.</p>
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-white/20">
+            © {year} MealsNest. All rights reserved.
+          </p>
+          <p className="text-xs text-white/20">
+            Made with ❤️ for food lovers everywhere.
+          </p>
         </div>
       </div>
     </footer>

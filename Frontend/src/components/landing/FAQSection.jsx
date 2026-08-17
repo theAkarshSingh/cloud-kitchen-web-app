@@ -31,21 +31,37 @@ const FAQItem = ({ q, a }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-white/10">
+    <div
+      className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+        open
+          ? "border-orange-500/25 bg-orange-500/5"
+          : "border-white/7 bg-white/2 hover:border-white/12"
+      }`}
+    >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full text-left py-5 flex items-center justify-between gap-4 hover:text-orange-400 transition-colors"
+        className="w-full text-left px-7 py-5 flex items-center justify-between gap-4"
         aria-expanded={open}
       >
-        <span className="font-medium">{q}</span>
+        <span className={`font-semibold text-sm md:text-base transition-colors ${open ? "text-orange-400" : "text-white/80"}`}>
+          {q}
+        </span>
         <span
-          className={`text-orange-400 text-xl transition-transform duration-300 flex-shrink-0 ${open ? "rotate-45" : ""}`}
+          className={`flex-shrink-0 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${
+            open
+              ? "bg-orange-500 border-orange-500 rotate-45 text-white"
+              : "border-white/15 text-white/40"
+          }`}
         >
-          +
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+          </svg>
         </span>
       </button>
       {open && (
-        <p className="text-gray-400 text-sm leading-relaxed pb-5">{a}</p>
+        <div className="px-7 pb-5 animate-fade-in">
+          <p className="text-white/45 text-sm leading-relaxed">{a}</p>
+        </div>
       )}
     </div>
   );
@@ -53,21 +69,22 @@ const FAQItem = ({ q, a }) => {
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="py-24">
-      <div className="max-w-3xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">
-            FAQ
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">
+    <section id="faq" className="py-28 relative overflow-hidden">
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-orange-500/4 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-3xl mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <span className="section-label mb-4 inline-block">FAQ</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-4 mb-4 tracking-tight">
             Got Questions?
           </h2>
-          <p className="text-gray-400 mt-4">
+          <p className="text-white/40 text-lg">
             Everything you need to know about MealsNest.
           </p>
         </div>
 
-        <div>
+        <div className="space-y-3">
           {faqs.map((faq) => (
             <FAQItem key={faq.q} q={faq.q} a={faq.a} />
           ))}

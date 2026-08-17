@@ -22,8 +22,23 @@ function App() {
   const isLandingPage = location.pathname === "/";
 
   return (
-    <>
-      <Toaster position="top-right" />
+    <div className="min-h-screen bg-[#080808]">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "rgba(20, 20, 20, 0.95)",
+            color: "#f8f8f8",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "14px",
+            backdropFilter: "blur(16px)",
+            fontSize: "0.875rem",
+          },
+          success: {
+            iconTheme: { primary: "#f97316", secondary: "#fff" },
+          },
+        }}
+      />
       {!isLandingPage && <Navbar />}
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -58,7 +73,7 @@ function App() {
           <Route path="orders" element={<ManageOrders />} />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 

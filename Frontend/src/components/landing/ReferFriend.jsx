@@ -7,27 +7,40 @@ const ReferFriend = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email) return;
-    toast.success(`Referral invite sent to ${email}!`);
+    toast.success(`Referral invite sent to ${email}! 🎉`);
     setEmail("");
   };
 
   return (
-    <section className="py-24 bg-white/5">
+    <section className="py-28 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="bg-gradient-to-br from-orange-500/20 to-red-500/10 border border-orange-500/20 rounded-3xl p-10 md:p-16 text-center relative overflow-hidden">
-          {/* Decorative blobs */}
-          <div className="absolute -top-10 -right-10 w-48 h-48 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-red-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="relative overflow-hidden rounded-3xl p-12 md:p-16 text-center">
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/15 via-orange-500/8 to-red-500/10 border border-orange-500/20 rounded-3xl" />
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-orange-500/15 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" />
+
+          {/* Grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03] rounded-3xl"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+            }}
+          />
 
           <div className="relative z-10">
-            <div className="text-5xl mb-4">🎁</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
-              Refer a Friend, Eat for Free
+            <div className="text-6xl mb-5 inline-block animate-float">🎁</div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
+              Refer a Friend,{" "}
+              <span className="gradient-text">Eat for Free</span>
             </h2>
-            <p className="text-gray-400 max-w-xl mx-auto mb-8 text-sm md:text-base">
+            <p className="text-white/45 max-w-xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
               Invite a friend to MealsNest. When they place their first order,
-              you both get <span className="text-orange-400 font-semibold">₹100 off</span> your next meal.
-              No limits — the more you refer, the more you save.
+              you both get{" "}
+              <span className="text-orange-400 font-bold">₹100 off</span> your
+              next meal. No limits — the more you refer, the more you save.
             </p>
 
             <form
@@ -40,17 +53,17 @@ const ReferFriend = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Friend's email address"
                 required
-                className="flex-1 bg-black/40 border border-white/20 rounded-full px-5 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-orange-400"
+                className="input-dark flex-1 !rounded-2xl"
               />
               <button
                 type="submit"
-                className="bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-full text-sm font-semibold transition shadow-lg shadow-orange-500/25 whitespace-nowrap"
+                className="btn-primary !rounded-2xl whitespace-nowrap !py-3.5 !px-7"
               >
                 Send Invite
               </button>
             </form>
 
-            <p className="text-gray-500 text-xs mt-5">
+            <p className="text-white/25 text-xs mt-5">
               No spam. One invite email, that's it.
             </p>
           </div>
