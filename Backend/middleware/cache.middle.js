@@ -11,6 +11,10 @@ const cache = (duration = 60) => {
     const key = `cache:${req.originalUrl}`;
 
     try {
+      if (!redisClient.isReady) {
+        return next();
+      }
+
       const cachedData = await redisClient.get(key);
 
       if (cachedData) {
@@ -20,9 +24,11 @@ const cache = (duration = 60) => {
       const originalJson = res.json.bind(res);
       res.json = (body) => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          redisClient
-            .setEx(key, duration, JSON.stringify(body))
-            .catch(() => {});
+          if (redisClient.isReady) {
+            redisClient
+              .setEx(key, duration, JSON.stringify(body))
+              .catch(() => {});
+          }
         }
         return originalJson(body);
       };
@@ -40,6 +46,9 @@ const cache = (duration = 60) => {
  */
 const invalidateCache = async (pattern) => {
   try {
+    if (!redisClient.isReady) {
+      return;
+    }
     const keys = await redisClient.keys(pattern);
     if (keys.length > 0) {
       await redisClient.del(keys);
