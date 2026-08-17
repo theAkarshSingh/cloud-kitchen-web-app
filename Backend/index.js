@@ -9,9 +9,16 @@ import app from "./src/app.js";
 
 const PORT = process.env.PORT || 5000;
 
-connectDB().then(() => {
+// Initialize the database connection
+connectDB();
+
+// Start the server only if running locally (not on Vercel)
+if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
     console.log(`API Docs: http://localhost:${PORT}/api-docs`);
   });
-});
+}
+
+// Export the Express API for Vercel serverless functions
+export default app;
