@@ -12,7 +12,7 @@ const plans = [
       "Free delivery on orders above ₹299",
       "Standard 30-min delivery",
     ],
-    cta: "Order à la carte",
+    cta: "Order Single Meal",
     highlight: false,
   },
   {
