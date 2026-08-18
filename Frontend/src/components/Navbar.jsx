@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { logout } from "../redux/slices/authSlice.js";
+import logo from "../assets/logo.jpg";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -35,9 +36,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center shadow-lg shadow-orange-500/30 group-hover:shadow-orange-500/50 transition-shadow duration-300">
-            <span className="text-white font-bold text-sm">M</span>
-          </div>
+          <img src={logo} alt="Meals Nest Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-orange-500/30 group-hover:shadow-orange-500/50 transition-shadow duration-300" />
           <span className="text-xl font-bold text-white tracking-tight">
             Meals<span className="text-orange-400">Nest</span>
           </span>

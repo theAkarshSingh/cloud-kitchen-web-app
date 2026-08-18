@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.jpg";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -12,9 +13,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 group mb-5 w-fit">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center shadow-lg shadow-orange-500/30">
-                <span className="text-white font-bold">M</span>
-              </div>
+              <img src={logo} alt="Meals Nest Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-orange-500/30" />
               <span className="text-xl font-bold text-white">
                 Meals<span className="text-orange-400">Nest</span>
               </span>

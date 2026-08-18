@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
+import logo from "../../assets/logo.jpg";
 
 const LandingNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,9 +24,7 @@ const LandingNavbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FF5722] to-[#E63946] flex items-center justify-center shadow-lg shadow-orange-500/30 group-hover:shadow-orange-500/50 transition-shadow duration-300">
-            <span className="text-white font-bold text-lg">M</span>
-          </div>
+          <img src={logo} alt="Meals Nest Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-orange-500/30 group-hover:shadow-orange-500/50 transition-shadow duration-300" />
           <span className="text-2xl font-bold text-[#F8F8F8] tracking-tight font-['Outfit']">
             Meals<span className="text-[#FF5722]">Nest</span>
           </span>
