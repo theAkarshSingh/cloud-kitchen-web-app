@@ -52,7 +52,6 @@ const LandingNavbar = () => {
           <div className="flex items-center gap-4">
             <button className="text-[#A0A0A0] hover:text-[#FF5722] transition-colors relative">
               <ShoppingCart size={22} />
-              <span className="absolute -top-1.5 -right-1.5 bg-[#E63946] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
             </button>
             <Link to="/login" className="text-[#A0A0A0] hover:text-[#FF5722] transition-colors">
               <User size={22} />
